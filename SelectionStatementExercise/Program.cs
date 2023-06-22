@@ -8,22 +8,32 @@
 
             var r = new Random();
             var favNumber = r.Next(1, 1000);
-     
-            Console.WriteLine("Try to guess my favorite number");
-            var userInput = int.Parse(Console.ReadLine());
+            int? userInput = null; 
+            int i = 1;  
 
-            if(userInput < favNumber)
+            Console.WriteLine("Try to guess my favorite number between 1 and 1000");
+
+            do
             {
-                Console.WriteLine("too low");
+                userInput = int.Parse(Console.ReadLine());
+
+                if (userInput < favNumber)
+                {
+                    Console.WriteLine("too low");
+                    Console.WriteLine("Try to guess again");
+                }
+                else if (userInput > favNumber)
+                {
+                    Console.WriteLine("too high");
+                    Console.WriteLine("Try to guess again");
+                }
+                else
+                {
+                    Console.WriteLine($"You guessed it in {i} attempts!!!");
+                }
+                i++;
             }
-            else if (userInput > favNumber)
-            {
-                Console.WriteLine("too high");
-            }
-            else
-            {
-                Console.WriteLine("You guessed it!!!");
-            }
+            while (userInput != favNumber);
         }
     }
 }
